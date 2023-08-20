@@ -21,6 +21,14 @@ export const removeTrailingSlash = (url: string): string => {
   return url;
 };
 
+export const removeLeadingSlash = (url: string): string => {
+  if (url.startsWith("/")) {
+    url = url.slice(1);
+  }
+  return url;
+};
+
+
 const mergeResources = (resourceA: Resource, resourceB: Resource) => {
   resourceB.fields?.forEach((fieldB) => {
     if (!resourceA.fields?.some((fieldA) => fieldA.name === fieldB.name)) {
@@ -157,8 +165,12 @@ export default async function (
 
   paths.forEach((path) => {
     const splittedPath = removeTrailingSlash(path).split("/");
-    const name = inflection.pluralize(splittedPath[splittedPath.length - 2]);
-    const url = `${removeTrailingSlash(serverUrl)}/${name}`;
+    const name = splittedPath[splittedPath.length - 2];
+    let subPath = splittedPath.slice(0, -1).join("/");
+    if (path.endsWith("/")) {
+      subPath += "/";
+    }
+    const url = `${removeTrailingSlash(serverUrl)}/${removeLeadingSlash(subPath)}`;
     const pathItem = document.paths[path];
     if (!pathItem) {
       throw new Error();
@@ -201,7 +213,7 @@ export default async function (
     const putOperation = pathItem.put;
     const patchOperation = pathItem.patch;
     const deleteOperation = pathItem.delete;
-    const pathCollection = document.paths[`/${name}`];
+    const pathCollection = document.paths[subPath];
     const listOperation = pathCollection && pathCollection.get;
     const createOperation = pathCollection && pathCollection.post;
     resource.operations = [

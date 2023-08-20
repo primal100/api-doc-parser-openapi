@@ -9,7 +9,7 @@ const openApi3Definition: OpenAPIV3.Document = {
     version: "0.0.0",
   },
   paths: {
-    "/books": {
+    "/api/v1/books/": {
       get: {
         tags: ["Book"],
         operationId: "getBookCollection",
@@ -121,7 +121,7 @@ const openApi3Definition: OpenAPIV3.Document = {
         },
       },
     },
-    "/books/{id}": {
+    "/api/v1/books/{id}/": {
       get: {
         tags: ["Book"],
         operationId: "getBookItem",
@@ -249,7 +249,7 @@ const openApi3Definition: OpenAPIV3.Document = {
         },
       },
     },
-    "/reviews": {
+    "/api/v1/reviews/": {
       get: {
         tags: ["Review"],
         operationId: "getReviewCollection",
@@ -361,7 +361,7 @@ const openApi3Definition: OpenAPIV3.Document = {
         },
       },
     },
-    "/reviews/{id}": {
+    "/api/v1/reviews/{id}/": {
       get: {
         tags: ["Review"],
         operationId: "getReviewItem",
@@ -628,7 +628,7 @@ const openApi3Definition: OpenAPIV3.Document = {
 const parsed = [
   {
     name: "books",
-    url: "https://demo.api-platform.com/books",
+    url: "https://demo.api-platform.com/api/v1/books/",
     id: null,
     title: "Book",
     description: "",
@@ -1036,7 +1036,7 @@ const parsed = [
   },
   {
     name: "reviews",
-    url: "https://demo.api-platform.com/reviews",
+    url: "https://demo.api-platform.com/api/v1/reviews/",
     id: null,
     title: "Review",
     description: "",
