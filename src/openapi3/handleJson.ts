@@ -279,5 +279,6 @@ export default async function (
     });
   });
 
+  console.log(resources);
   return resources;
 }
