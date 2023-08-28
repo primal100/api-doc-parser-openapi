@@ -983,7 +983,7 @@ const parsed = [
         name: "active",
         id: null,
         range: null,
-        type: "string",
+        type: "boolean",
         arrayType: null,
         enum: null,
         reference: null,
@@ -1065,7 +1065,7 @@ const parsed = [
         name: "active",
         id: null,
         range: null,
-        type: "string",
+        type: "boolean",
         arrayType: null,
         enum: null,
         reference: null,
@@ -1120,25 +1120,25 @@ const parsed = [
     parameters: [
       {
         variable: "category_id",
-        range: null,
+        range: "integer",
         required: false,
         description: ""
       },
       {
         variable: "active",
-        range: null,
+        range: "boolean",
         required: false,
         description: ""
       },
       {
         variable: "created__gte",
-        range: null,
+        range: "string",
         required: false,
         description: ""
       },
       {
         variable: "created__lte",
-        range: null,
+        range: "string",
         required: false,
         description: ""
       }

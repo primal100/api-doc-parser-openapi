@@ -32,8 +32,6 @@ export const removeLeadingSlash = (url: string): string => {
 const mergeResources = (resourceA: Resource, resourceB: Resource) => {
   resourceB.fields?.forEach((fieldB) => {
     if (!resourceA.fields?.some((fieldA) => fieldA.name === fieldB.name)) {
-      console.log('Adding writable field');
-      console.log(fieldB);
       resourceA.fields?.push(fieldB);
     }
   });
@@ -41,25 +39,27 @@ const mergeResources = (resourceA: Resource, resourceB: Resource) => {
     if (
       !resourceA.readableFields?.some((fieldA) => fieldA.name === fieldB.name)
     ) {
-      console.log('Adding readableField', fieldB);
       resourceA.readableFields?.push(fieldB);
     }
   });
-  console.log('resourceA writeableFields');
-  console.log(resourceA.writableFields);
-  console.log('resourceB writeableFields');
-  console.log(resourceB.writableFields);
   resourceB.writableFields?.forEach((fieldB) => {
     if (
       !resourceA.writableFields?.some((fieldA) => fieldA.name === fieldB.name)
     ) {
-      console.log('Adding writableField', fieldB);
       resourceA.writableFields?.push(fieldB);
     }
   });
-  console.log('resourceA writeableFields final');
-  console.log(resourceA.writableFields);
   return resourceA;
+};
+
+const getFieldType = (field: OpenAPIV3.SchemaObject): string | undefined => {
+  const validSubType = field.anyOf?.find(subType => 'type' in subType && subType.type !== null);
+
+  if (validSubType && 'type' in validSubType) {
+    return validSubType.type;
+  }
+
+  return field.type;
 };
 
 const buildResourceFromSchema = (
@@ -81,8 +81,8 @@ const buildResourceFromSchema = (
 
   const fields = fieldNames.map((fieldName) => {
     const property = properties[fieldName] as OpenAPIV3.SchemaObject;
-
-    const type = getType(property.type || "string", property.format);
+    const fieldType = getFieldType(property);
+    const type = getType(fieldType || "string", property.format);
     const field = new Field(fieldName, {
       id: null,
       range: null,
@@ -90,7 +90,7 @@ const buildResourceFromSchema = (
       arrayType:
         type === "array" && "items" in property
           ? getType(
-              (property.items as OpenAPIV3.SchemaObject).type || "string",
+              (getFieldType(property.items as OpenAPIV3.SchemaObject)) || "string",
               (property.items as OpenAPIV3.SchemaObject).format
             )
           : null,
@@ -209,10 +209,6 @@ export default async function (
 
     if (!showSchema && !editSchema) return;
 
-    console.log(title, 'showSchema:')
-    console.log(showSchema);
-    console.log(title, 'editSchema:')
-    console.log(editSchema);
     const showResource = showSchema
       ? buildResourceFromSchema(showSchema, name, title, url, true, false)
       : null;
@@ -224,8 +220,7 @@ export default async function (
     if (showResource && editResource) {
       resource = mergeResources(showResource, editResource);
     }
-    console.log(title, 'Combined resource')
-    console.log(resource)
+
     const putOperation = pathItem.put;
     const patchOperation = pathItem.patch;
     const deleteOperation = pathItem.delete;
@@ -261,8 +256,8 @@ export default async function (
             new Parameter(
               parameter.name,
               parameter.schema && isRef(parameter.schema)
-                ? parameter.schema.type
-                  ? getType(parameter.schema.type)
+                ? getFieldType(parameter.schema)
+                  ? getType(getFieldType(parameter.schema) || "string")
                   : null
                 : null,
               parameter.required || false,
