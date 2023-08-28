@@ -32,6 +32,8 @@ export const removeLeadingSlash = (url: string): string => {
 const mergeResources = (resourceA: Resource, resourceB: Resource) => {
   resourceB.fields?.forEach((fieldB) => {
     if (!resourceA.fields?.some((fieldA) => fieldA.name === fieldB.name)) {
+      console.log('Adding writable field');
+      console.log(fieldB);
       resourceA.fields?.push(fieldB);
     }
   });
@@ -39,17 +41,24 @@ const mergeResources = (resourceA: Resource, resourceB: Resource) => {
     if (
       !resourceA.readableFields?.some((fieldA) => fieldA.name === fieldB.name)
     ) {
+      console.log('Adding readableField', fieldB);
       resourceA.readableFields?.push(fieldB);
     }
   });
+  console.log('resourceA writeableFields');
+  console.log(resourceA.writableFields);
+  console.log('resourceB writeableFields');
+  console.log(resourceB.writableFields);
   resourceB.writableFields?.forEach((fieldB) => {
     if (
       !resourceA.writableFields?.some((fieldA) => fieldA.name === fieldB.name)
     ) {
+      console.log('Adding writableField', fieldB);
       resourceA.writableFields?.push(fieldB);
     }
   });
-
+  console.log('resourceA writeableFields final');
+  console.log(resourceA.writableFields);
   return resourceA;
 };
 
@@ -57,7 +66,9 @@ const buildResourceFromSchema = (
   schema: OpenAPIV3.SchemaObject,
   name: string,
   title: string,
-  url: string
+  url: string,
+  readable: boolean,
+  writable: boolean
 ) => {
   const description = schema.description;
   const properties = schema.properties || {};
@@ -101,10 +112,10 @@ const buildResourceFromSchema = (
       description: property.description || "",
     });
 
-    if (!property.writeOnly) {
+    if (readable && !property.writeOnly) {
       readableFields.push(field);
     }
-    if (!property.readOnly) {
+    if (writable && !property.readOnly) {
       writableFields.push(field);
     }
 
@@ -198,18 +209,23 @@ export default async function (
 
     if (!showSchema && !editSchema) return;
 
+    console.log(title, 'showSchema:')
+    console.log(showSchema);
+    console.log(title, 'editSchema:')
+    console.log(editSchema);
     const showResource = showSchema
-      ? buildResourceFromSchema(showSchema, name, title, url)
+      ? buildResourceFromSchema(showSchema, name, title, url, true, false)
       : null;
     const editResource = editSchema
-      ? buildResourceFromSchema(editSchema, name, title, url)
+      ? buildResourceFromSchema(editSchema, name, title, url, false, true)
       : null;
     let resource = showResource ?? editResource;
     if (!resource) return;
     if (showResource && editResource) {
       resource = mergeResources(showResource, editResource);
     }
-
+    console.log(title, 'Combined resource')
+    console.log(resource)
     const putOperation = pathItem.put;
     const patchOperation = pathItem.patch;
     const deleteOperation = pathItem.delete;
