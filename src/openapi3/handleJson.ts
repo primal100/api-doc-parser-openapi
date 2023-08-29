@@ -52,14 +52,22 @@ const mergeResources = (resourceA: Resource, resourceB: Resource) => {
   return resourceA;
 };
 
-const getFieldType = (field: OpenAPIV3.SchemaObject): string | undefined => {
-  const validSubType = field.anyOf?.find(subType => 'type' in subType && subType.type !== null);
+const setFieldInfoFromAnyOf = (property: OpenAPIV3.SchemaObject): OpenAPIV3.SchemaObject => {
+  const validSubType = property.anyOf?.find(
+    subType => 'type' in subType && subType.type !== null);
 
   if (validSubType && 'type' in validSubType) {
-    return validSubType.type;
+    property = {
+      ...property,
+      ...validSubType
+    };
   }
 
-  return field.type;
+  if (property.type === "array" && "items" in property) {
+    property.items = setFieldInfoFromAnyOf(property.items as OpenAPIV3.SchemaObject);
+  }
+
+  return property;
 };
 
 const buildResourceFromSchema = (
@@ -80,9 +88,9 @@ const buildResourceFromSchema = (
   const writableFields: Field[] = [];
 
   const fields = fieldNames.map((fieldName) => {
-    const property = properties[fieldName] as OpenAPIV3.SchemaObject;
-    const fieldType = getFieldType(property);
-    const type = getType(fieldType || "string", property.format);
+    let property = properties[fieldName] as OpenAPIV3.SchemaObject;
+    property = setFieldInfoFromAnyOf(property);
+    const type = getType(property.type || "string", property.format);
     const field = new Field(fieldName, {
       id: null,
       range: null,
@@ -90,7 +98,7 @@ const buildResourceFromSchema = (
       arrayType:
         type === "array" && "items" in property
           ? getType(
-              (getFieldType(property.items as OpenAPIV3.SchemaObject)) || "string",
+              (property.items as OpenAPIV3.SchemaObject).type || "string",
               (property.items as OpenAPIV3.SchemaObject).format
             )
           : null,
@@ -251,13 +259,17 @@ export default async function (
     if (listOperation && listOperation.parameters) {
       resource.parameters = listOperation.parameters
         .filter(isRef)
+        .map((paramater) => {
+          paramater.schema = setFieldInfoFromAnyOf(paramater.schema as OpenAPIV3.SchemaObject)
+          return paramater;
+        })
         .map(
           (parameter) =>
             new Parameter(
               parameter.name,
               parameter.schema && isRef(parameter.schema)
-                ? getFieldType(parameter.schema)
-                  ? getType(getFieldType(parameter.schema) || "string")
+                ? parameter.schema.type
+                  ? getType(parameter.schema.type || "string")
                   : null
                 : null,
               parameter.required || false,
