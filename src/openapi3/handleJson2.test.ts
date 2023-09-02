@@ -801,7 +801,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "name",
@@ -814,7 +814,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "created",
@@ -827,8 +827,8 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
-      }
+        description: "",
+      },
     ],
     readableFields: [
       {
@@ -842,7 +842,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "name",
@@ -855,7 +855,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "created",
@@ -868,8 +868,8 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
-      }
+        description: "",
+      },
     ],
     writableFields: [
       {
@@ -883,8 +883,64 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
-      }
+        description: "",
+      },
+    ],
+    createFields: [
+      {
+        name: "name",
+        id: null,
+        range: null,
+        type: "string",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+    ],
+    listFields: [
+      {
+        name: "id",
+        id: null,
+        range: null,
+        type: "integer",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "name",
+        id: null,
+        range: null,
+        type: "string",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "created",
+        id: null,
+        range: null,
+        type: "dateTime",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
     ],
     parameters: [],
     operations: [
@@ -892,33 +948,33 @@ const parsed = [
         name: "Get Category View",
         type: "show",
         method: "GET",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Modify Category View",
         type: "edit",
         method: "PUT",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Delete Category View",
         type: "delete",
         method: "DELETE",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "List Categories View",
         type: "list",
         method: "GET",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Add Category View",
         type: "create",
         method: "POST",
-        deprecated: false
-      }
-    ]
+        deprecated: false,
+      },
+    ],
   },
   {
     name: "sources",
@@ -937,21 +993,21 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "category",
         id: null,
         range: null,
-        type: "string",
+        type: "object",
         arrayType: null,
         enum: null,
-        reference: "Object Category",
-        embedded: null,
+        reference: null,
+        embedded: "Object Category",
         nullable: false,
         required: true,
         description: "",
-        maxCardinality: 1
+        maxCardinality: 1,
       },
       {
         name: "created",
@@ -964,7 +1020,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "url",
@@ -977,7 +1033,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "active",
@@ -990,7 +1046,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: false,
-        description: ""
+        description: "",
       },
       {
         name: "category_id",
@@ -1004,8 +1060,8 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
-        maxCardinality: 1
-      }
+        maxCardinality: 1,
+      },
     ],
     readableFields: [
       {
@@ -1019,21 +1075,21 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "category",
         id: null,
         range: null,
-        type: "string",
+        type: "object",
         arrayType: null,
         enum: null,
-        reference: "Object Category",
-        embedded: null,
+        reference: null,
+        embedded: "Object Category",
         nullable: false,
         required: true,
         description: "",
-        maxCardinality: 1
+        maxCardinality: 1,
       },
       {
         name: "created",
@@ -1046,7 +1102,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "url",
@@ -1059,7 +1115,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "active",
@@ -1072,8 +1128,8 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: false,
-        description: ""
-      }
+        description: "",
+      },
     ],
     writableFields: [
       {
@@ -1087,7 +1143,7 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
       },
       {
         name: "category_id",
@@ -1101,7 +1157,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
-        maxCardinality: 1
+        maxCardinality: 1,
       },
       {
         name: "active",
@@ -1114,7 +1170,117 @@ const parsed = [
         embedded: null,
         nullable: false,
         required: true,
-        description: ""
+        description: "",
+      },
+    ],
+    createFields: [
+      {
+        name: "url",
+        id: null,
+        range: null,
+        type: "string",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "category_id",
+        id: null,
+        range: null,
+        type: "integer",
+        arrayType: null,
+        enum: null,
+        reference: "Object Category",
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+        maxCardinality: 1,
+      },
+      {
+        name: "active",
+        id: null,
+        range: null,
+        type: "boolean",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+    ],
+    listFields: [
+      {
+        name: "id",
+        id: null,
+        range: null,
+        type: "integer",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "category",
+        id: null,
+        range: null,
+        type: "object",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: "Object Category",
+        nullable: false,
+        required: true,
+        description: "",
+        maxCardinality: 1,
+      },
+      {
+        name: "created",
+        id: null,
+        range: null,
+        type: "dateTime",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "url",
+        id: null,
+        range: null,
+        type: "string",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: true,
+        description: "",
+      },
+      {
+        name: "active",
+        id: null,
+        range: null,
+        type: "boolean",
+        arrayType: null,
+        enum: null,
+        reference: null,
+        embedded: null,
+        nullable: false,
+        required: false,
+        description: "",
       },
     ],
     parameters: [
@@ -1122,62 +1288,61 @@ const parsed = [
         variable: "category_id",
         range: "integer",
         required: false,
-        description: ""
+        description: "",
       },
       {
         variable: "active",
         range: "boolean",
         required: false,
-        description: ""
+        description: "",
       },
       {
         variable: "created__gte",
         range: "string",
         required: false,
-        description: ""
+        description: "",
       },
       {
         variable: "created__lte",
         range: "string",
         required: false,
-        description: ""
-      }
+        description: "",
+      },
     ],
     operations: [
       {
         name: "Get Source View",
         type: "show",
         method: "GET",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Modify Source View",
         type: "edit",
         method: "PUT",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Delete Source View",
         type: "delete",
         method: "DELETE",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "List Sources View",
         type: "list",
         method: "GET",
-        deprecated: false
+        deprecated: false,
       },
       {
         name: "Add Source View",
         type: "create",
         method: "POST",
-        deprecated: false
-      }
-    ]
-  }
+        deprecated: false,
+      },
+    ],
+  },
 ];
-
 
 test(`Parse OpenApi v3 Documentation from Json`, async () => {
   const toBeParsed = await handleJson(

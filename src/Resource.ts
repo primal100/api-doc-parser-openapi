@@ -13,6 +13,8 @@ export interface ResourceOptions
     fields?: Field[];
     readableFields?: Field[];
     writableFields?: Field[];
+    createFields?: Field[];
+    listFields?: Field[];
     parameters?: Parameter[];
     getParameters?: () => Promise<Parameter[]>;
     operations?: Operation[];
