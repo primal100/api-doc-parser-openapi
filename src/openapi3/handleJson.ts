@@ -9,6 +9,7 @@ import getResourcePaths from "../utils/getResources.js";
 import getType from "./getType.js";
 import type { OpenAPIV3 } from "openapi-types";
 import type { OperationType } from "../Operation.js";
+import merge from "ts-deepmerge";
 
 const isRef = <T extends object>(
   maybeRef: T | OpenAPIV3.ReferenceObject
@@ -63,13 +64,14 @@ const mergeResources = (resourceA: Resource, resourceB: Resource) => {
   return resourceA;
 };
 
-const setFieldInfoFromAnyOfAllOf = (
+const setFieldInfoFromAnyOfOneOfAllOf = (
   property: OpenAPIV3.SchemaObject
 ): OpenAPIV3.SchemaObject => {
-  if (property.anyOf) {
-    const validSubType = property.anyOf?.find(
-      (subType) => "type" in subType && subType.type !== null
-    );
+  if (property.anyOf || property.oneOf) {
+    const validSubType = [
+      ...(property.anyOf || []),
+      ...(property.oneOf || []),
+    ].find((subType) => "type" in subType && subType.type !== null);
 
     if (validSubType && "type" in validSubType) {
       property = {
@@ -79,11 +81,12 @@ const setFieldInfoFromAnyOfAllOf = (
     }
 
     if (property.type === "array" && "items" in property) {
-      property.items = setFieldInfoFromAnyOfAllOf(
+      property.items = setFieldInfoFromAnyOfOneOfAllOf(
         property.items as OpenAPIV3.SchemaObject
       );
     }
   } else if (property.allOf) {
+    property = merge(...property.allOf, property);
     property.type = "object";
   }
 
@@ -113,7 +116,7 @@ const buildResourceFromSchema = (
 
   const fields = fieldNames.map((fieldName) => {
     let property = properties[fieldName] as OpenAPIV3.SchemaObject;
-    property = setFieldInfoFromAnyOfAllOf(property);
+    property = setFieldInfoFromAnyOfOneOfAllOf(property);
     const type = getType(property.type || "string", property.format);
     const field = new Field(fieldName, {
       id: null,
@@ -375,7 +378,7 @@ export default async function (
       resource.parameters = listOperation.parameters
         .filter(isRef)
         .map((parameter) => {
-          parameter.schema = setFieldInfoFromAnyOfAllOf(
+          parameter.schema = setFieldInfoFromAnyOfOneOfAllOf(
             parameter.schema as OpenAPIV3.SchemaObject
           );
           return parameter;
