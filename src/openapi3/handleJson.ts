@@ -68,9 +68,10 @@ const setFieldInfoFromAnyOfOneOfAllOf = (
   property: OpenAPIV3.SchemaObject
 ): OpenAPIV3.SchemaObject => {
   if (property.anyOf || property.oneOf) {
-    const validSubType = [...(property.anyOf || []), ...(property.oneOf || [])].find(
-      (subType) => "type" in subType && subType.type !== null
-    );
+    const validSubType = [
+      ...(property.anyOf || []),
+      ...(property.oneOf || []),
+    ].find((subType) => "type" in subType && subType.type !== null);
 
     if (validSubType && "type" in validSubType) {
       property = {
