@@ -1298,13 +1298,13 @@ const parsed = [
       },
       {
         variable: "created__gte",
-        range: "string",
+        range: "dateTime",
         required: false,
         description: "",
       },
       {
         variable: "created__lte",
-        range: "string",
+        range: "dateTime",
         required: false,
         description: "",
       },

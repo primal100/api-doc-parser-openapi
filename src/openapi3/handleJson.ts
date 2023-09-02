@@ -389,7 +389,10 @@ export default async function (
               parameter.name,
               parameter.schema && isRef(parameter.schema)
                 ? parameter.schema.type
-                  ? getType(parameter.schema.type || "string")
+                  ? getType(
+                      parameter.schema.type || "string",
+                      parameter.schema.format
+                    )
                   : null
                 : null,
               parameter.required || false,
