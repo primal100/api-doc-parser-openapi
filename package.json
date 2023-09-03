@@ -1,6 +1,6 @@
 {
   "name": "openapi-doc-parser",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "description": "Transform an API documentation (Hydra, OpenAPI, GraphQL) in an intermediate representation that can be used for various tasks such as creating smart API clients, scaffolding code or building administration interfaces.",
   "files": [
     "*.md",
@@ -10,9 +10,9 @@
   "type": "module",
   "exports": "./lib/index.js",
   "main": "./lib/index.js",
-  "repository": "primal100/api-doc-parser",
-  "homepage": "https://github.com/primal100/api-doc-parser",
-  "bugs": "https://github.com/primal100/api-doc-parser/issues",
+  "repository": "primal100/api-doc-parser-openapi",
+  "homepage": "https://github.com/primal100/api-doc-parser-openapi",
+  "bugs": "https://github.com/primal100/api-doc-parser-openapi/issues",
   "author": "Paul Martin (forked from library by Kévin Dunglas)",
   "license": "MIT",
   "devDependencies": {
