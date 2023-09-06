@@ -11,6 +11,20 @@ import type { OpenAPIV3 } from "openapi-types";
 import type { OperationType } from "../Operation.js";
 import merge from "ts-deepmerge";
 
+function copyDefinedKeys<T extends object>(source: T, keys: Array<keyof T>): Partial<T> {
+    let result: Partial<T> = {};
+
+    keys.forEach((key) => {
+        if (source[key] !== undefined && source[key] !== null) {
+            result[key] = source[key];
+        }
+    });
+
+    return result;
+}
+
+
+
 const isRef = <T extends object>(
   maybeRef: T | OpenAPIV3.ReferenceObject
 ): maybeRef is T => !("$ref" in maybeRef);
@@ -145,6 +159,11 @@ const buildResourceFromSchema = (
       nullable: property.nullable || false,
       required: !!requiredFields.find((value) => value === fieldName),
       description: property.description || "",
+      ...(property.minLength ? { minLength: property.minLength } : {}),
+      ...(property.maxLength ? { maxLength: property.maxLength } : {}),
+      ...(property.minimum ? { minimum: property.minimum } : {}),
+      ...(property.maximum ? { maxLength: property.maxLength } : {}),
+      ...(property.pattern ? { minimum: property.pattern } : {}),
     });
 
     if (readable && !property.writeOnly) {

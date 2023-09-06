@@ -44,6 +44,11 @@ export interface FieldOptions
     description?: string;
     maxCardinality?: number;
     deprecated?: boolean;
+    minLength? : number;
+    maxLength? : number;
+    minimum?: number | string;
+    maximum?: number;
+    pattern?: string;
   }> {}
 
 export interface Field extends FieldOptions {}

@@ -586,6 +586,7 @@ const openApi3Definition: OpenAPIV3.Document = {
           url: {
             type: "string",
             title: "Url",
+            maxLength: 255,
           },
           category_id: {
             type: "integer",
@@ -802,6 +803,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "name",
@@ -815,6 +817,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 32,
       },
       {
         name: "created",
@@ -843,6 +846,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "name",
@@ -856,6 +860,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 32,
       },
       {
         name: "created",
@@ -884,6 +889,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 32,
       },
     ],
     createFields: [
@@ -899,6 +905,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 32,
       },
     ],
     listFields: [
@@ -914,6 +921,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "name",
@@ -927,6 +935,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 32,
       },
       {
         name: "created",
@@ -994,6 +1003,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "category",
@@ -1034,6 +1044,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 255,
       },
       {
         name: "active",
@@ -1076,6 +1087,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "category",
@@ -1116,6 +1128,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 255,
       },
       {
         name: "active",
@@ -1144,6 +1157,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 255,
       },
       {
         name: "category_id",
@@ -1186,6 +1200,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 255,
       },
       {
         name: "category_id",
@@ -1228,6 +1243,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        minimum: 1,
       },
       {
         name: "category",
@@ -1268,6 +1284,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        maxLength: 255,
       },
       {
         name: "active",
