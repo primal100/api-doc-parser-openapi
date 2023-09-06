@@ -11,20 +11,6 @@ import type { OpenAPIV3 } from "openapi-types";
 import type { OperationType } from "../Operation.js";
 import merge from "ts-deepmerge";
 
-function copyDefinedKeys<T extends object>(source: T, keys: Array<keyof T>): Partial<T> {
-    let result: Partial<T> = {};
-
-    keys.forEach((key) => {
-        if (source[key] !== undefined && source[key] !== null) {
-            result[key] = source[key];
-        }
-    });
-
-    return result;
-}
-
-
-
 const isRef = <T extends object>(
   maybeRef: T | OpenAPIV3.ReferenceObject
 ): maybeRef is T => !("$ref" in maybeRef);
