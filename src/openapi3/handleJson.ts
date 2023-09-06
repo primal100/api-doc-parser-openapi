@@ -145,6 +145,11 @@ const buildResourceFromSchema = (
       nullable: property.nullable || false,
       required: !!requiredFields.find((value) => value === fieldName),
       description: property.description || "",
+      ...(property.minLength ? { minLength: property.minLength } : {}),
+      ...(property.maxLength ? { maxLength: property.maxLength } : {}),
+      ...(property.minimum ? { minimum: property.minimum } : {}),
+      ...(property.maximum ? { maxLength: property.maxLength } : {}),
+      ...(property.pattern ? { minimum: property.pattern } : {}),
     });
 
     if (readable && !property.writeOnly) {
