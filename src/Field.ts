@@ -49,6 +49,7 @@ export interface FieldOptions
     minimum?: number | string;
     maximum?: number;
     pattern?: string;
+    multiline?: boolean;
   }> {}
 
 export interface Field extends FieldOptions {}
