@@ -499,19 +499,24 @@ const openApi3Definition: OpenAPIV3.Document = {
           isbn: {
             type: "string",
             description: "The ISBN of the book",
+            minLength: 13,
+            maxLength: 13,
           },
           description: {
             type: "string",
             description: "A description of the item",
+            maxLength: 50,
           },
           author: {
             type: "string",
             description:
               "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+            maxLength: 50,
           },
           title: {
             type: "string",
             description: "The title of the book",
+            maxLength: 20,
           },
           bookFormat: {
             type: "string",
@@ -556,19 +561,24 @@ const openApi3Definition: OpenAPIV3.Document = {
           isbn: {
             type: "string",
             description: "The ISBN of the book",
+            minLength: 13,
+            maxLength: 13,
           },
           description: {
             type: "string",
             description: "A description of the item",
+            maxLength: 50,
           },
           author: {
             type: "string",
             description:
               "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+            maxLength: 50,
           },
           title: {
             type: "string",
             description: "The title of the book",
+            maxLength: 20,
           },
           bookFormat: {
             type: "string",
@@ -611,10 +621,11 @@ const openApi3Definition: OpenAPIV3.Document = {
             type: "string",
           },
           book: {
-            type: "string",
+            type: "integer",
           },
           author: {
             type: "string",
+            maxLength: 50,
           },
           publicationDate: {
             type: "string",
@@ -658,6 +669,8 @@ const parsed = [
         nullable: false,
         required: false,
         description: "The ISBN of the book",
+        minLength: 13,
+        maxLength: 13,
       },
       {
         name: "description",
@@ -671,6 +684,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "A description of the item",
+        maxLength: 50,
       },
       {
         name: "author",
@@ -685,6 +699,7 @@ const parsed = [
         required: true,
         description:
           "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+        maxLength: 50,
       },
       {
         name: "title",
@@ -698,6 +713,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "The title of the book",
+        maxLength: 20,
       },
       {
         name: "bookFormat",
@@ -787,6 +803,8 @@ const parsed = [
         nullable: false,
         required: false,
         description: "The ISBN of the book",
+        minLength: 13,
+        maxLength: 13,
       },
       {
         name: "description",
@@ -800,6 +818,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "A description of the item",
+        maxLength: 50,
       },
       {
         name: "author",
@@ -814,6 +833,7 @@ const parsed = [
         required: true,
         description:
           "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+        maxLength: 50,
       },
       {
         name: "title",
@@ -827,6 +847,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "The title of the book",
+        maxLength: 20,
       },
       {
         name: "bookFormat",
@@ -890,6 +911,8 @@ const parsed = [
         nullable: false,
         required: false,
         description: "The ISBN of the book",
+        minLength: 13,
+        maxLength: 13,
       },
       {
         name: "description",
@@ -903,6 +926,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "A description of the item",
+        maxLength: 50,
       },
       {
         name: "author",
@@ -917,6 +941,7 @@ const parsed = [
         required: true,
         description:
           "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+        maxLength: 50,
       },
       {
         name: "title",
@@ -930,6 +955,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "The title of the book",
+        maxLength: 20,
       },
       {
         name: "bookFormat",
@@ -1006,6 +1032,8 @@ const parsed = [
         nullable: false,
         required: false,
         description: "The ISBN of the book",
+        minLength: 13,
+        maxLength: 13,
       },
       {
         name: "description",
@@ -1019,6 +1047,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "A description of the item",
+        maxLength: 50,
       },
       {
         name: "author",
@@ -1033,6 +1062,7 @@ const parsed = [
         required: true,
         description:
           "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+        maxLength: 50,
       },
       {
         name: "title",
@@ -1046,6 +1076,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "The title of the book",
+        maxLength: 20,
       },
       {
         name: "bookFormat",
@@ -1135,6 +1166,8 @@ const parsed = [
         nullable: false,
         required: false,
         description: "The ISBN of the book",
+        minLength: 13,
+        maxLength: 13,
       },
       {
         name: "description",
@@ -1148,6 +1181,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "A description of the item",
+        maxLength: 50,
       },
       {
         name: "author",
@@ -1162,6 +1196,7 @@ const parsed = [
         required: true,
         description:
           "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably",
+        maxLength: 50,
       },
       {
         name: "title",
@@ -1175,6 +1210,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "The title of the book",
+        maxLength: 20,
       },
       {
         name: "bookFormat",
@@ -1311,12 +1347,13 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        multiline: true,
       },
       {
         name: "book",
         id: null,
         range: null,
-        type: "string",
+        type: "integer",
         arrayType: null,
         enum: null,
         reference: {
@@ -1340,6 +1377,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        maxLength: 50,
       },
       {
         name: "publicationDate",
@@ -1394,12 +1432,13 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        multiline: true,
       },
       {
         name: "book",
         id: null,
         range: null,
-        type: "string",
+        type: "integer",
         arrayType: null,
         enum: null,
         reference: {
@@ -1423,6 +1462,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        maxLength: 50,
       },
       {
         name: "publicationDate",
@@ -1464,12 +1504,13 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        multiline: true,
       },
       {
         name: "book",
         id: null,
         range: null,
-        type: "string",
+        type: "integer",
         arrayType: null,
         enum: null,
         reference: {
@@ -1493,6 +1534,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        maxLength: 50,
       },
       {
         name: "publicationDate",
@@ -1534,12 +1576,13 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        multiline: true,
       },
       {
         name: "book",
         id: null,
         range: null,
-        type: "string",
+        type: "integer",
         arrayType: null,
         enum: null,
         reference: {
@@ -1563,6 +1606,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        maxLength: 50,
       },
       {
         name: "publicationDate",
@@ -1617,12 +1661,13 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        multiline: true,
       },
       {
         name: "book",
         id: null,
         range: null,
-        type: "string",
+        type: "integer",
         arrayType: null,
         enum: null,
         reference: {
@@ -1646,6 +1691,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        maxLength: 50,
       },
       {
         name: "publicationDate",

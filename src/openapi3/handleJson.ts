@@ -146,7 +146,9 @@ const buildResourceFromSchema = (
       required: !!requiredFields.find((value) => value === fieldName),
       description: property.description || "",
       ...(property.minLength ? { minLength: property.minLength } : {}),
-      ...(property.maxLength ? { maxLength: property.maxLength } : {}),
+      ...(property.maxLength
+        ? { maxLength: property.maxLength }
+        : type === "string" && !property.enum && { multiline: true }),
       ...(property.minimum ? { minimum: property.minimum } : {}),
       ...(property.maximum ? { maxLength: property.maxLength } : {}),
       ...(property.pattern ? { minimum: property.pattern } : {}),
