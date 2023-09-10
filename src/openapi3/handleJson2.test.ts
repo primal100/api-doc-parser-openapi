@@ -805,6 +805,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -848,6 +849,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -923,6 +925,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -1005,6 +1008,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
@@ -1090,6 +1094,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
@@ -1249,6 +1254,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
