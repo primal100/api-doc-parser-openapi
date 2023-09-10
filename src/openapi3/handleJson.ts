@@ -150,8 +150,10 @@ const buildResourceFromSchema = (
         ? { maxLength: property.maxLength }
         : type === "string" && !property.enum && { multiline: true }),
       ...(property.minimum ? { minimum: property.minimum } : {}),
-      ...(property.maximum ? { maxLength: property.maxLength } : {}),
-      ...(property.pattern ? { minimum: property.pattern } : {}),
+      ...(property.maximum ? { maximum: property.maximum } : {}),
+      ...(property.pattern ? { pattern: property.pattern } : {}),
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      ...(property.default ? { default: property.default } : {}),
     });
 
     if (readable && !property.writeOnly) {

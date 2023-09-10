@@ -595,6 +595,7 @@ const openApi3Definition: OpenAPIV3.Document = {
           active: {
             type: "boolean",
             title: "Active",
+            default: true,
           },
         },
         type: "object",
@@ -804,6 +805,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -847,6 +849,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -922,6 +925,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "name",
@@ -1004,6 +1008,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
@@ -1058,6 +1063,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        default: true,
       },
       {
         name: "category_id",
@@ -1088,6 +1094,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
@@ -1142,6 +1149,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        default: true,
       },
     ],
     writableFields: [
@@ -1185,6 +1193,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        default: true,
       },
     ],
     createFields: [
@@ -1228,6 +1237,7 @@ const parsed = [
         nullable: false,
         required: true,
         description: "",
+        default: true,
       },
     ],
     listFields: [
@@ -1244,6 +1254,7 @@ const parsed = [
         required: true,
         description: "",
         minimum: 1,
+        maximum: 2147483647,
       },
       {
         name: "category",
@@ -1298,6 +1309,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
+        default: true,
       },
     ],
     parameters: [
