@@ -1063,7 +1063,7 @@ const parsed = [
         nullable: false,
         required: false,
         description: "",
-        default: true
+        default: true,
       },
       {
         name: "category_id",

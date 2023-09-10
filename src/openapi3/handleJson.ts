@@ -152,6 +152,7 @@ const buildResourceFromSchema = (
       ...(property.minimum ? { minimum: property.minimum } : {}),
       ...(property.maximum ? { maximum: property.maximum } : {}),
       ...(property.pattern ? { pattern: property.pattern } : {}),
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       ...(property.default ? { default: property.default } : {}),
     });
 
