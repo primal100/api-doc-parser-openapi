@@ -152,6 +152,7 @@ const buildResourceFromSchema = (
       ...(property.minimum ? { minimum: property.minimum } : {}),
       ...(property.maximum ? { maxLength: property.maxLength } : {}),
       ...(property.pattern ? { minimum: property.pattern } : {}),
+      ...(property.default ? { default: property.default } : {}),
     });
 
     if (readable && !property.writeOnly) {
