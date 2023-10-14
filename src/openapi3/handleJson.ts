@@ -277,23 +277,18 @@ export default async function (
         ) as OpenAPIV3.SchemaObject)
       : null;
     const editSchema = editOperation
-      ? (get(
-          editOperation,
-          "requestBody.content.application/json.schema"
-        ) || (
-        get(
+      ? get(editOperation, "requestBody.content.application/json.schema") ||
+        (get(
           editOperation,
           "requestBody.content.multipart/form-data.schema"
-        ) as unknown as OpenAPIV3.SchemaObject
-      ) as unknown as OpenAPIV3.SchemaObject)
+        ) as unknown as OpenAPIV3.SchemaObject as unknown as OpenAPIV3.SchemaObject)
       : null;
     const createSchema = createOperation
       ? (get(
           createOperation,
           "requestBody.content.application/json.schema"
-        ) as unknown as OpenAPIV3.SchemaObject
-      ) || (
-        get(
+        ) as unknown as OpenAPIV3.SchemaObject) ||
+        (get(
           createOperation,
           "requestBody.content.multipart/form-data.schema"
         ) as unknown as OpenAPIV3.SchemaObject)
